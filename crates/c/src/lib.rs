@@ -490,6 +490,12 @@ impl C {
             | TypeDefKind::Union(_) => {
                 unreachable!()
             }
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
             TypeDefKind::Tuple(t) => {
                 self.src.h_defs("struct {\n");
                 for (i, t) in t.types.iter().enumerate() {
@@ -568,6 +574,12 @@ impl C {
 
             TypeDefKind::Flags(_) => {}
             TypeDefKind::Enum(_) => {}
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
 
             TypeDefKind::Record(r) => {
                 for field in r.fields.iter() {
@@ -815,6 +827,13 @@ impl Return {
         };
         match &resolve.types[id].kind {
             TypeDefKind::Type(t) => return self.return_single(resolve, t, orig_ty, sig_flattening),
+
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
 
             // Flags are returned as their bare values, and enums are scalars
             TypeDefKind::Flags(_) | TypeDefKind::Enum(_) => {
@@ -2582,6 +2601,8 @@ fn push_ty_name(resolve: &Resolve, ty: &Type, src: &mut String) {
                 | TypeDefKind::Flags(_)
                 | TypeDefKind::Enum(_)
                 | TypeDefKind::Variant(_)
+                | TypeDefKind::Resource
+                | TypeDefKind::Handle(_)
                 | TypeDefKind::Union(_) => {
                     unimplemented!()
                 }
@@ -2671,6 +2692,12 @@ pub fn is_arg_by_pointer(resolve: &Resolve, ty: &Type) -> bool {
             TypeDefKind::Tuple(_) | TypeDefKind::Record(_) | TypeDefKind::List(_) => true,
             TypeDefKind::Future(_) => todo!("is_arg_by_pointer for future"),
             TypeDefKind::Stream(_) => todo!("is_arg_by_pointer for stream"),
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
             TypeDefKind::Unknown => unreachable!(),
         },
         Type::String => true,
@@ -2722,6 +2749,12 @@ pub fn owns_anything(resolve: &Resolve, ty: &Type) -> bool {
             .iter()
             .any(|c| optional_owns_anything(resolve, c.ty.as_ref())),
         TypeDefKind::Union(v) => v.cases.iter().any(|case| owns_anything(resolve, &case.ty)),
+        TypeDefKind::Resource => {
+            todo!("resource")
+        }
+        TypeDefKind::Handle(_) => {
+            todo!("handle")
+        }
         TypeDefKind::Option(t) => owns_anything(resolve, t),
         TypeDefKind::Result(r) => {
             optional_owns_anything(resolve, r.ok.as_ref())

@@ -688,6 +688,12 @@ impl InterfaceGenerator<'_> {
                     | TypeDefKind::Union(_) => {
                         unimplemented!()
                     }
+                    TypeDefKind::Resource => {
+                        todo!("resource")
+                    }
+                    TypeDefKind::Handle(_) => {
+                        todo!("handle")
+                    }
                     TypeDefKind::Tuple(t) => {
                         let mut src = String::new();
                         src.push_str("Tuple");
@@ -776,6 +782,12 @@ impl InterfaceGenerator<'_> {
                     | TypeDefKind::Variant(_)
                     | TypeDefKind::Union(_) => {
                         unimplemented!()
+                    }
+                    TypeDefKind::Resource => {
+                        todo!("resource")
+                    }
+                    TypeDefKind::Handle(_) => {
+                        todo!("handle")
                     }
                     TypeDefKind::Tuple(t) => {
                         let mut src = String::new();
@@ -1082,6 +1094,12 @@ impl InterfaceGenerator<'_> {
             | TypeDefKind::Variant(_)
             | TypeDefKind::Union(_) => {
                 unreachable!()
+            }
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
             }
             TypeDefKind::Tuple(t) => {
                 let prev = mem::replace(&mut self.src, Source::default());
@@ -1961,6 +1979,12 @@ impl<'a, 'b> FunctionBindgen<'a, 'b> {
                     }
                     TypeDefKind::Future(_) => todo!("impl future"),
                     TypeDefKind::Stream(_) => todo!("impl future"),
+                    TypeDefKind::Resource => {
+                        todo!("resource")
+                    }
+                    TypeDefKind::Handle(_) => {
+                        todo!("handle")
+                    }
                     TypeDefKind::Unknown => unreachable!(),
                 }
             }
@@ -2208,6 +2232,12 @@ impl<'a, 'b> FunctionBindgen<'a, 'b> {
                     }
                     TypeDefKind::Future(_) => todo!("impl future"),
                     TypeDefKind::Stream(_) => todo!("impl stream"),
+                    TypeDefKind::Resource => {
+                        todo!("resource")
+                    }
+                    TypeDefKind::Handle(_) => {
+                        todo!("handle")
+                    }
                     TypeDefKind::Unknown => unreachable!(),
                 }
             }

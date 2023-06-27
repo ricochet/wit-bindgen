@@ -484,6 +484,9 @@ impl InterfaceGenerator<'_> {
         let param_mode = TypeMode::AllBorrowed("'_");
         match &func.kind {
             FunctionKind::Freestanding => {}
+            FunctionKind::Method(_) => {}
+            FunctionKind::Static(_) => {}
+            FunctionKind::Constructor(_) => {}
         }
         self.src.push_str("#[allow(clippy::all)]\n");
         let params = self.print_signature(func, param_mode, &sig);
@@ -531,6 +534,9 @@ impl InterfaceGenerator<'_> {
 
         match &func.kind {
             FunctionKind::Freestanding => {}
+            FunctionKind::Method(_) => {}
+            FunctionKind::Static(_) => {}
+            FunctionKind::Constructor(_) => {}
         }
     }
 
@@ -1615,6 +1621,15 @@ impl Bindgen for FunctionBindgen<'_, '_> {
                 match &func.kind {
                     FunctionKind::Freestanding => {
                         self.push_str(&format!("T::{}", to_rust_ident(&func.name)));
+                    }
+                    FunctionKind::Method(_) => {
+                        todo!("method")
+                    }
+                    FunctionKind::Static(_) => {
+                        todo!("static")
+                    }
+                    FunctionKind::Constructor(_) => {
+                        todo!("constructor")
                     }
                 }
                 self.push_str("(");

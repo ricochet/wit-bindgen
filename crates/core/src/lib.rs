@@ -145,6 +145,12 @@ impl Types {
             }
             TypeDefKind::Flags(_) => {}
             TypeDefKind::Enum(_) => {}
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
             TypeDefKind::Variant(v) => {
                 for case in v.cases.iter() {
                     info |= self.optional_type_info(resolve, case.ty.as_ref());
@@ -527,6 +533,12 @@ pub trait InterfaceGenerator<'a> {
             TypeDefKind::Type(t) => self.type_alias(id, name, t, &ty.docs),
             TypeDefKind::Future(_) => todo!("generate for future"),
             TypeDefKind::Stream(_) => todo!("generate for stream"),
+            TypeDefKind::Resource => {
+                todo!("resource")
+            }
+            TypeDefKind::Handle(_) => {
+                todo!("handle")
+            }
             TypeDefKind::Unknown => unreachable!(),
         }
     }

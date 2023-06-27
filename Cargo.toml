@@ -29,11 +29,18 @@ clap = { version = "4.2.2", features = ["derive"] }
 env_logger = "0.10.0"
 indexmap = "1.9.3"
 
-wasm-encoder = "0.29.0"
-wasm-metadata = "0.8.0"
+# wasm-encoder = "0.29.0"
+wasm-encoder = { path = '../wasm-tools/crates/wasm-encoder' }
+
+# wasm-metadata = "0.8.0"
+wasm-metadata = { path = '../wasm-tools/crates/wasm-metadata' }
+
 wat = "1.0.66"
-wit-parser = "0.8.0"
-wit-component = "0.11.0"
+# wit-parser = "0.8.0"
+wit-parser = { path = '../wasm-tools/crates/wit-parser' }
+
+# wit-component = "0.11.0"
+wit-component = { path = '../wasm-tools/crates/wit-component' }
 
 wit-bindgen-core = { path = 'crates/core', version = '0.8.0' }
 wit-bindgen-c = { path = 'crates/c', version = '0.8.0' }
@@ -77,6 +84,8 @@ go = ['dep:wit-bindgen-go']
 
 [dev-dependencies]
 heck = { workspace = true }
-wasmtime = { version = "10", features = ['component-model'] }
+# wasmtime = { version = "10", features = ['component-model'] }
+wasmtime = { path = '../wasmtime/crates/wasmtime', features = ['component-model'] }
+
 test-artifacts = { path = 'crates/test-rust-wasm/artifacts' }
 wit-parser = { workspace = true }
